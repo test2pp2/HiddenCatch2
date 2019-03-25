@@ -1,10 +1,15 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "network/HttpRequest.h"
 
 class Util {
 public:
     static cocos2d::Vec2 GetCenterPosition();
+    static void StartDownloadImage(
+        const std::string& url,
+        const cocos2d::network::ccHttpRequestCallback& callback
+    );
 };
 
 class GameInstance {
@@ -19,6 +24,3 @@ public:
 private:
     GameInstance();
 };
-
-
-
