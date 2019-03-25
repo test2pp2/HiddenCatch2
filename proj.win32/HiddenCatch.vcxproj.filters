@@ -30,11 +30,11 @@
     <ClCompile Include="..\Classes\LobbyScene.cpp">
       <Filter>src\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SinlePlayScene.cpp">
-      <Filter>src\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Util.cpp">
       <Filter>src\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SinglePlayScene.cpp">
+      <Filter>src\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
