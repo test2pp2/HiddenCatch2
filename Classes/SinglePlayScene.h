@@ -22,6 +22,10 @@ public:
         cocos2d::network::HttpResponse* response
     );
 
+    //cocos2d::Texture2D left_texture_;
+    //cocos2d::Texture2D right_texture_;
+
+    
     CREATE_FUNC(SinglePlayScene);
 private:
 

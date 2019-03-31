@@ -50,13 +50,13 @@
     <ClInclude Include="..\Classes\LobbyScene.h">
       <Filter>src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ConstValue.h">
-      <Filter>src\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\SinglePlayScene.h">
       <Filter>src\Scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Util.h">
+      <Filter>src\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ConstValue.h">
       <Filter>src\Util</Filter>
     </ClInclude>
   </ItemGroup>

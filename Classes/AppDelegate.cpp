@@ -123,8 +123,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // run
     director->runWithScene(scene);
 
-    // 항상 게임을 켜놓기
-    director->runWithScene(scene);
     return true;
 }
 
