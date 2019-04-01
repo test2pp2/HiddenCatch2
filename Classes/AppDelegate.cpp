@@ -117,6 +117,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     register_all_packages();
 
+    // Ç×»ó ÄÑÁü
+    cocos2d::Device::setKeepScreenOn(true);
+
     // create a scene. it's an autorelease object
     auto scene = LobbyScene::createScene();
 

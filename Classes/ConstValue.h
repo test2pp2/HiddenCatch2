@@ -22,13 +22,13 @@ struct ImageDesignSize {
 };
 
 struct TimerDesignSize {
-    static const uint32_t width = 1080;
+    static const uint32_t width = 1920;
     static const uint32_t height = 16;
 };
 
 struct BottomUiDesignSize {
     static const uint32_t width = 1920;
-    static const uint32_t height = 180;
+    static const uint32_t height = 164;
 };
 
 struct CenterSpaceDesignSize {

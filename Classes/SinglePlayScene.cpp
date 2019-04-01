@@ -16,6 +16,33 @@ static Layer*   sprite_layer = nullptr;
 bool CreateUiButton(Layer* layer) {
     assert(layer);
 
+    const auto timer = Sprite::create("res/UI/Timer.png");
+    timer->setPosition(
+        {
+            Util::GetCenterPosition().x,
+            Util::GetCenterPosition().y - (ImageDesignSize::height / 2) + (BottomUiDesignSize::height / 2)
+        }
+    );
+    layer->addChild(timer);
+
+    const auto bottom_background = Sprite::create("res/UI/Bottom.png");
+    bottom_background->setPosition(
+        {
+            Util::GetCenterPosition().x,
+            Util::GetCenterPosition().y - (ImageDesignSize::height / 2) - (TimerDesignSize::height / 2)
+        }
+    );
+    layer->addChild(bottom_background);
+
+    // 타이머 아이콘
+    const auto timer_item = Sprite::create("res/UI/TimerIcon.png");
+    timer_item->setPosition(
+        {
+            bottom_background->getPosition().x + 300.0f,
+            bottom_background->getPosition().y - 2.0f
+        }
+    );
+    layer->addChild(timer_item);
 
     return true;
 }
@@ -25,20 +52,19 @@ bool CreateSprite(Layer* layer) {
 
     auto left_image = Sprite::create("res/Common/TestLeftImage.png");
     left_image->setPosition(
-        Vec2(
+        {
             Util::GetCenterPosition().x - (ImageDesignSize::width / 2) - (CenterSpaceDesignSize::width / 2),
-            Util::GetCenterPosition().y
-        )
+            Util::GetCenterPosition().y + (BottomUiDesignSize::height / 2) + (TimerDesignSize::height / 2)
+        }
     );
     layer->addChild(left_image);
 
-
     auto right_image = Sprite::create("res/Common/TestLeftImage.png");
     right_image->setPosition(
-        Vec2(
-            Util::GetCenterPosition().x + (ImageDesignSize::width / 2 + (CenterSpaceDesignSize::width / 2)),
-            Util::GetCenterPosition().y
-        )
+        {
+            Util::GetCenterPosition().x + (ImageDesignSize::width / 2) + (CenterSpaceDesignSize::width / 2),
+            Util::GetCenterPosition().y + (TimerDesignSize::height / 2) + (BottomUiDesignSize::height / 2)
+        }
     );
     layer->addChild(right_image);
 
