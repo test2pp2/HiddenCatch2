@@ -36,6 +36,9 @@
     <ClCompile Include="..\Classes\SinglePlayScene.cpp">
       <Filter>src\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\json11.cpp">
+      <Filter>src\Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -57,6 +60,9 @@
       <Filter>src\Util</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ConstValue.h">
+      <Filter>src\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json11.hpp">
       <Filter>src\Util</Filter>
     </ClInclude>
   </ItemGroup>
