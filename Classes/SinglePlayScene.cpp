@@ -21,7 +21,7 @@ static ProgressTimer* progress_timer_bar = nullptr;
 static void RequestStageInfo(int32_t stage_id, std::string uid) {
     using namespace network;
 
-    std::string url = std::string("aaa") + "/stage/req/" + std::to_string(stage_id) + "/" + uid;
+    const std::string url = WebServerUrl + "/stage/req/" + std::to_string(stage_id) + "/" + uid;
 
     auto request = new HttpRequest();
     request->setUrl(url.c_str());
@@ -119,7 +119,7 @@ bool CreateUiButton(Scene* scene, Layer* layer) {
     layer->addChild(progress_timer_bar);
     
     layer->schedule([](float /*dt*/) {
-        CCLOG("timer updated");
+        //CCLOG("timer updated");
         const float kTimerMaxSec = 45;
         const float percentage = progress_timer_bar->getPercentage();
         progress_timer_bar->setPercentage(percentage - (100 / (kTimerMaxSec * 10)));
@@ -186,6 +186,8 @@ bool SinglePlayScene::init() {
     sprite_layer = Layer::create();
     this->addChild(sprite_layer, ZOrder::kSprite);
     CreateSprite(this, ui_layer);
+
+    RequestStageInfo(1, "abcd");
 
     // 왼쪽 이미지 다운로드
     Util::StartDownloadImage(

@@ -16,6 +16,8 @@ enum ImagePlace { kNone = 0, kLeft, kRight };
 static float kScaleUpDuration = 0.2f;
 static float kScaleNormalDuration = 0.2f;
 
+static std::string WebServerUrl = "http://127.0.0.1:3000";
+
 struct ImageDesignSize {
     static const int32_t width = 956;
     static const int32_t height = 900;
