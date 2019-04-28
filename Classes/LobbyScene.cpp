@@ -6,8 +6,7 @@
 
 using namespace cocos2d;
 
-static Layer*   ui_layer = nullptr;
-static Layer*   sprite_layer = nullptr;
+static Layer* layers[LayerOrder::kSize] = {nullptr, };
 static ui::Button* play_single_button = nullptr;
 
 static bool CreateUiButton(Layer* layer) {
@@ -39,17 +38,7 @@ static bool CreateUiButton(Layer* layer) {
     return true;
 }
 
-static bool CreateSprite(Layer* layer) {
-    assert(layer);
-
-    auto left_image = Sprite::create();
-    left_image->setPosition(Vec2::ZERO);
-    layer->addChild(left_image);
-   
-
-    return true;
-}
-
+// 공통으로 옮겨야 함
 static bool RequestUserInfo(const std::string& url) {
     GameInstance::Get().user_info()->user_id = 100;
     GameInstance::Get().user_info()->user_nickname = "abcd";
@@ -66,12 +55,12 @@ Scene* LobbyScene::createScene() {
 bool LobbyScene::init() {
     if (!Scene::init()) return false;
 
-    ui_layer = Layer::create();
-    this->addChild(ui_layer, ZOrder::kUI);
-    CreateUiButton(ui_layer);
+    layers[LayerOrder::kUi] = Layer::create();
+    this->addChild(layers[LayerOrder::kUi], LayerOrder::kUi);
+    CreateUiButton(layers[LayerOrder::kUi]);
 
-    sprite_layer = Layer::create();
-    this->addChild(sprite_layer, ZOrder::kSprite);
+    layers[LayerOrder::kSprite] = Layer::create();
+    this->addChild(layers[LayerOrder::kSprite], LayerOrder::kSprite);
 
     if (!RequestUserInfo("http://aaaa")) {
         // LOG_ERROR 핸들링

@@ -11,9 +11,7 @@ using namespace cocos2d;
 static Texture2D left_texture;
 static Texture2D right_texture;
 
-static Layer*   ui_layer = nullptr;
-static Layer*   sprite_layer = nullptr;
-
+static Layer* layers[LayerOrder::kSize] = { nullptr, };
 static Sprite* timer_bar = nullptr;
 static ProgressTimer* progress_timer_bar = nullptr;
 
@@ -46,7 +44,7 @@ static void RequestStageInfo(int32_t stage_id, std::string uid) {
             char* concatenated = new char[buffer->size() + 1];
             std::string payload(buffer->begin(), buffer->end());
             strcpy(concatenated, payload.c_str());
-            auto json_object = json11::Json::parse(concatenated, error);
+            json11::Json json_object = json11::Json::parse(concatenated, error);
             delete[] concatenated;
         /*
         hidden_points_.clear();
@@ -179,13 +177,14 @@ Scene* SinglePlayScene::createScene() {
 bool SinglePlayScene::init() {
     if (!Scene::init()) return false;
 
-    ui_layer = Layer::create();
-    this->addChild(ui_layer, ZOrder::kUI);
-    CreateUiButton(this, ui_layer);
+    layers[LayerOrder::kUi] = Layer::create();
+    layers[LayerOrder::kSprite] = Layer::create();
 
-    sprite_layer = Layer::create();
-    this->addChild(sprite_layer, ZOrder::kSprite);
-    CreateSprite(this, ui_layer);
+    this->addChild(layers[LayerOrder::kUi], LayerOrder::kUi);
+    CreateUiButton(this, layers[LayerOrder::kUi]);
+
+    this->addChild(layers[LayerOrder::kSprite], LayerOrder::kSprite);
+    CreateSprite(this, layers[LayerOrder::kSprite]);
 
     RequestStageInfo(1, "abcd");
 
@@ -263,7 +262,8 @@ void SinglePlayScene::StartDownloadImage(
                 Util::GetCenterPosition().y + (TimerDesignSize::height / 2) + (BottomUiDesignSize::height / 2)
         );
     }
-    sprite_layer->addChild(sprite);
+
+    layers[LayerOrder::kSprite]->addChild(sprite);
     
     ++image_download_count_;
     if (image_download_count_ >= 2) {

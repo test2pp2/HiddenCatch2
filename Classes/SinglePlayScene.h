@@ -3,10 +3,10 @@
 #include "cocos2d.h"
 
 namespace cocos2d {
-    namespace network {
-        class HttpResponse;
-        class HttpClient;
-    }
+namespace network {
+class HttpResponse;
+class HttpClient;
+}
 }
 
 class SinglePlayScene final : public cocos2d::Scene {
