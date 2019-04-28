@@ -16,7 +16,7 @@ static Sprite* timer_bar = nullptr;
 static ProgressTimer* progress_timer_bar = nullptr;
 
 
-static void RequestStageInfo(int32_t stage_id, std::string uid) {
+static void RequestStageInfo(int32_t stage_id, const std::string& uid) {
     using namespace network;
 
     const std::string url = WebServerUrl + "/stage/req/" + std::to_string(stage_id) + "/" + uid;
@@ -46,41 +46,42 @@ static void RequestStageInfo(int32_t stage_id, std::string uid) {
             strcpy(concatenated, payload.c_str());
             json11::Json json_object = json11::Json::parse(concatenated, error);
             delete[] concatenated;
-        /*
-        hidden_points_.clear();
-        left_hidden_rects_.clear();
-        right_hidden_rects_.clear();
+            // json 오브젝트 파싱해주기
+            /*
+            hidden_points_.clear();
+            left_hidden_rects_.clear();
+            right_hidden_rects_.clear();
 
-        for (auto& hidden_point : json_object["hidden_points"].array_items()) {
-            HiddenPoint tmp;
-            tmp.x = static_cast<float>(hidden_point["x"].int_value());
-            tmp.y = static_cast<float>(hidden_point["y"].int_value());
-            tmp.width = hidden_point["width"].int_value();
-            tmp.height = hidden_point["height"].int_value();
-            hidden_points_.emplace_back(tmp);
-        }
+            for (auto& hidden_point : json_object["hidden_points"].array_items()) {
+                HiddenPoint tmp;
+                tmp.x = static_cast<float>(hidden_point["x"].int_value());
+                tmp.y = static_cast<float>(hidden_point["y"].int_value());
+                tmp.width = hidden_point["width"].int_value();
+                tmp.height = hidden_point["height"].int_value();
+                hidden_points_.emplace_back(tmp);
+            }
 
-        auto current_stage_count = json_object["current_stage_count"].int_value();
-        auto total_stage_count = json_object["total_stage_count"].int_value();
+            auto current_stage_count = json_object["current_stage_count"].int_value();
+            auto total_stage_count = json_object["total_stage_count"].int_value();
 
-        total_hidden_point_count_ = hidden_points_.size();
-        CreateLabel(current_stage_count + 1, total_stage_count);
+            total_hidden_point_count_ = hidden_points_.size();
+            CreateLabel(current_stage_count + 1, total_stage_count);
 
-        auto left_image_url = json_object["left_image_url"].string_value();
-        auto right_image_url = json_object["right_image_url"].string_value();
-        StartDownloadLeftImage(left_image_url.c_str());
-        StartDownloadRightImage(right_image_url.c_str());
+            auto left_image_url = json_object["left_image_url"].string_value();
+            auto right_image_url = json_object["right_image_url"].string_value();
+            StartDownloadLeftImage(left_image_url.c_str());
+            StartDownloadRightImage(right_image_url.c_str());
 
-        for (auto hidden_point : hidden_points_) {
-            auto x = hidden_point.x - (hidden_point.width * 0.5f);
-            auto y = (hidden_point.y + kTimerOutlinerHeight + kBottomSpriteHeight) - (hidden_point.height * 0.5f);
-            Rect left_rect(x, y, hidden_point.width, hidden_point.height);
-            left_hidden_rects_.push_back(left_rect);
+            for (auto hidden_point : hidden_points_) {
+                auto x = hidden_point.x - (hidden_point.width * 0.5f);
+                auto y = (hidden_point.y + kTimerOutlinerHeight + kBottomSpriteHeight) - (hidden_point.height * 0.5f);
+                Rect left_rect(x, y, hidden_point.width, hidden_point.height);
+                left_hidden_rects_.push_back(left_rect);
 
-            Rect right_rect(x + kMiddleSpace + kImageWidth, y, hidden_point.width, hidden_point.height);
-            right_hidden_rects_.push_back(right_rect);
-        }
-        */
+                Rect right_rect(x + kMiddleSpace + kImageWidth, y, hidden_point.width, hidden_point.height);
+                right_hidden_rects_.push_back(right_rect);
+            }
+            */
     });
 
     HttpClient::getInstance()->send(request);
