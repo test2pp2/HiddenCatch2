@@ -16,9 +16,10 @@ static Sprite* timer_bar = nullptr;
 static ProgressTimer* progress_timer_bar = nullptr;
 
 
-static void RequestStageInfo(int32_t stage_id, const std::string& uid) {
+void SinglePlayScene::RequestStageInfo(int32_t stage_id, const std::string& uid) {
     using namespace network;
 
+    
     const std::string url = WebServerUrl + "/stage/req/" + std::to_string(stage_id) + "/" + uid;
 
     auto request = new HttpRequest();
@@ -46,6 +47,7 @@ static void RequestStageInfo(int32_t stage_id, const std::string& uid) {
             strcpy(concatenated, payload.c_str());
             json11::Json json_object = json11::Json::parse(concatenated, error);
             delete[] concatenated;
+           
             // json 오브젝트 파싱해주기
             /*
             hidden_points_.clear();
@@ -168,6 +170,15 @@ bool CreateSprite(Scene* scene, Layer* layer) {
  **/
 Scene* SinglePlayScene::createScene() {
     return SinglePlayScene::create();
+}
+
+/****************************************************************************
+ *
+ * 소멸자
+ *
+ **/
+SinglePlayScene::~SinglePlayScene() {
+    CCLOG("SinnglePlayScene dtor called");
 }
 
 /****************************************************************************
